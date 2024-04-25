@@ -60,19 +60,14 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <!-- 移除了PostgreSQL的版本号，使用Spring Boot管理的版本 -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.postgresql</groupId>-->
+<!--            <artifactId>postgresql</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version> <!-- 请根据实际情况使用最新版本 -->
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
@@ -111,8 +106,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
-
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--            <version>3.4.1</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

@@ -9,12 +9,10 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @SpringBootApplication
-//3
-//4
+
 public class Main {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Main.class);
         app.run(args);
-        BlockingQueue blockingQueue = new LinkedBlockingQueue();
     }
 }
