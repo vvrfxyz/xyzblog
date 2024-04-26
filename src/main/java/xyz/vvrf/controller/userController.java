@@ -1,26 +1,34 @@
 package xyz.vvrf.controller;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.vvrf.entity.UserEntity;
 import xyz.vvrf.service.UserService;
+import xyz.vvrf.util.RedisLockUtils;
+import xyz.vvrf.util.RedisReentrantLockUtils;
 
 @RestController
 @RequestMapping(value = "/api/setUser")
 public class userController {
+    @Autowired
+    RedisLockUtils redisLockUtils;
+    @Autowired
+    RedisReentrantLockUtils redisReentrantLockUtils;
     @GetMapping("/setuser")
     public void set(){
-        UserService userService = new UserService();
-        UserEntity user = new UserEntity();
-        user.setId("1");
-        user.setName("Alice");
-        user.setAge(30);
+        System.out.println(Thread.currentThread().getName());
+        redisLockUtils.getLock("111",Thread.currentThread().getName(),100L);
+        redisLockUtils.getLock("111",Thread.currentThread().getName(),100L);
+    }
 
-        userService.saveUser(user); // 将用户保存到Redis
-        UserEntity retrievedUser = userService.getUser("1"); // 从Redis读取用户
-
-        System.out.println(retrievedUser.getName()); // 应该打印出"Alice"
+    @GetMapping("/test")
+    public void get(){
+        System.out.println(redisReentrantLockUtils.lock("codehole"));
+        System.out.println(redisReentrantLockUtils.lock("codehole"));
+        System.out.println(redisReentrantLockUtils.unlock("codehole"));
+        System.out.println(redisReentrantLockUtils.unlock("codehole"));
     }
 }
